@@ -15,7 +15,6 @@ public class ReverseVowels {
     public static String reverse(String word) {
         char[] _word = word.toCharArray();
         String dictionary = "eyuioa";
-        String vowels = "";
         int end = word.length()-1;
         for(int i=0;i<=end;++i)
             if( dictionary.indexOf( _word[i] ) != -1 ) {
