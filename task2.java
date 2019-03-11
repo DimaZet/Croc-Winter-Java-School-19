@@ -6,8 +6,8 @@ public class task2 {
 	}
 }
 
-class ColorModel {
-	public RGB toRgb();
+abstract class ColorModel {
+	public abstract RGB toRgb();
 }
 
 class HSV extends ColorModel {
@@ -17,11 +17,11 @@ class HSV extends ColorModel {
 
 	public RGB toRgb() {
 		int H_i = hue / 60 % 6;
-		int V_min = (100 - saturation) * value / 100;
-		int a =  (hue % 60) / 60 * (value - V_min);
-		int V_inc = V_min + a;
-		int V_dec = value - a;
-		int R = 0, G = 0, B = 0;
+        double V_min = (100 - saturation) * value / 100.0;
+        double a =  (hue % 60) / 60.0 * (value - V_min);
+        double V_inc = V_min + a;
+        double V_dec = value - a;
+        double R = 0, G = 0, B = 0;
 		switch (H_i) {
 			case 0: R = value; G = V_inc; B = V_min; break;
 			case 1: R = V_dec; G = value; B = V_min; break;
@@ -31,7 +31,7 @@ class HSV extends ColorModel {
 			case 5: R = value; G = V_min; B = V_dec; break;
 			default: System.out.println("toRgb case");
 		}
-		return new RGB(R*255/100, G*255/100, B*255/100);
+		return new RGB((int)(R*255/100), (int)(G*255/100), (int)(B*255/100));
 	}
 	
 	public HSV (int h, int s, int v) {
@@ -48,6 +48,7 @@ class Grayscale extends ColorModel {
 	
 	public RGB toRgb() {
 		// ToDo
+        return null;
 	}
 	
 	public String toString() {
@@ -76,4 +77,9 @@ class RGB extends ColorModel {
 	public String toString() {
 		return "RGB[" + red + "][" + green + "][" + blue + "]";
 	}
+
+    @Override
+    public RGB toRgb() {
+        return this;
+    }
 }
