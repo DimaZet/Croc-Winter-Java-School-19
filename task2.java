@@ -34,13 +34,9 @@ class HSV extends ColorModel {
 		return new RGB((int)(R*255/100), (int)(G*255/100), (int)(B*255/100));
 	}
 	
-	public HSV (int h, int s, int v) {
-		hue = h; saturation = s; value = v;
-	}
-
-	public String toString() {
-		return "HSV[" + hue + "][" + saturation + "][" + value + "]";
-	}
+	public HSV (int h, int s, int v) { hue = h; saturation = s; value = v; }
+    @Override
+	public String toString() { return "HSV[" + hue + "][" + saturation + "][" + value + "]"; }
 }
 
 class Grayscale extends ColorModel {
@@ -50,36 +46,22 @@ class Grayscale extends ColorModel {
 		// ToDo
         return null;
 	}
-	
-	public String toString() {
-		return "GrSc[" + grayBrightness + "]";
-	}
+	@Override
+	public String toString() { return "GrSc[" + grayBrightness + "]"; }
 
-	public Grayscale() {
-		grayBrightness = 127;
-	}
+	public Grayscale() { grayBrightness = 127; }
 
-	public Grayscale(int gb) {
-		grayBrightness = (byte) gb;
-	}
+	public Grayscale(int gb) { grayBrightness = (byte) gb; }
 }
 
 class RGB extends ColorModel {
 	private int red;
 	private int green;
 	private int blue;
-	public RGB() {
-		red = 0; green = 0; blue = 0;
-	}
-	public RGB (int r, int g, int b) {
-		red = r; green = g; blue = b;
-	}
-	public String toString() {
-		return "RGB[" + red + "][" + green + "][" + blue + "]";
-	}
-
+	public RGB() { red = 0; green = 0; blue = 0; }
+	public RGB (int r, int g, int b) { red = r; green = g; blue = b; }
+	@Override
+	public String toString() { return "RGB[" + red + "][" + green + "][" + blue + "]"; }
     @Override
-    public RGB toRgb() {
-        return this;
-    }
+    public RGB toRgb() { return this; }
 }
