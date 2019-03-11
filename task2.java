@@ -1,5 +1,3 @@
-import com.sun.xml.internal.ws.api.message.ExceptionHasMessage;
-
 import java.util.ArrayList;
 
 public class task2 {
@@ -77,23 +75,23 @@ class HSV extends ColorModel {
 }
 
 class Grayscale extends ColorModel {
-	private byte grayBrightness;	//0 - Black -> 255 - White
+	private int grayBrightness;	//0 - Black -> 255 - White
 	@Override
 	public RGB toRgb() throws Exception {
-		return new RGB((int)grayBrightness, (int)grayBrightness, (int)grayBrightness);
+		return new RGB(grayBrightness, grayBrightness, grayBrightness);
 	}
 	@Override
 	public String toString() { return "GrSc[" + grayBrightness + "]"; }
 	public Grayscale() { grayBrightness = 127; }
-	public Grayscale(int gb) throws Exception { setGrayBrightness((byte) gb); }
+	public Grayscale(int gb) throws Exception { setGrayBrightness(gb); }
 
-	public void setGrayBrightness(byte grayBrightness) throws Exception {
+	public void setGrayBrightness(int grayBrightness) throws Exception {
 		if ((0 <= grayBrightness) && (grayBrightness < 256))
 			this.grayBrightness = grayBrightness;
 		else
 			throw new Exception("set grayBrightness out of range");
 	}
-	public byte getGrayBrightness() { return grayBrightness; }
+	public int getGrayBrightness() { return grayBrightness; }
 }
 
 class RGB extends ColorModel {
