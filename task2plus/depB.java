@@ -1,9 +1,15 @@
 package task2plus;
 
-public class depB extends depA {
-    private static int depBMaxCount = 7;
-    private int processingTime;
-    public int minTime() {
-        return processingTime + super.minTime();
-    }
+public class depB extends Department {
+	//protected int processingTime = 3;
+	//protected ArrayList<depC> subDeps;
+	//protected subDepsCount = 4;
+	@Override
+	protected void initSubDeps() {
+		subDeps = new ArrayList<depC>(subDepCount);
+	}
+	
+	public depB() {
+		super(3, 4);
+	}
 }
