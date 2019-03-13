@@ -32,7 +32,7 @@ public class ChessCoord {
     public ChessCoord(String parse) {
         if (parse == null || parse.length() != 2
          || parse.charAt(0) < 'a' || parse.charAt(0) > 'h'
-         || parse.charAt(1) < '0' || parse.charAt(1) > '8')
+         || parse.charAt(1) < '1' || parse.charAt(1) > '8')
             throw new IllegalArgumentException("illegal parse argument in ChessCoord(" + parse + ")");
         x = parse.charAt(0)-'a'+1;
         y = parse.charAt(1)-'0';
