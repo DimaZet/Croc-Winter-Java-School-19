@@ -10,7 +10,7 @@ public class ChessCoord {
 
     public void setX(int x) {
         if (x < 1 || x > 8)
-            throw new IllegalArgumentException("set illegal x");
+            throw new IllegalArgumentException("set illegal x in setX(" + x + ")");
         this.x = x;
     }
 
@@ -20,7 +20,7 @@ public class ChessCoord {
 
     public void setY(int y) {
         if (y < 1 || y > 8)
-            throw new IllegalArgumentException("set illegal y");
+            throw new IllegalArgumentException("set illegal y in setY(" + y + ")");
         this.y = y;
     }
 
@@ -30,8 +30,10 @@ public class ChessCoord {
     }
 
     public ChessCoord(String parse) {
-        if (parse == null || parse.length() != 2 || parse.charAt(0) < 'a' || parse.charAt(1) > 'h')
-            throw new IllegalArgumentException("illegal parse argument");
+        if (parse == null || parse.length() != 2
+         || parse.charAt(0) < 'a' || parse.charAt(0) > 'h'
+         || parse.charAt(1) < '0' || parse.charAt(1) > '8')
+            throw new IllegalArgumentException("illegal parse argument in ChessCoord(" + parse + ")");
         x = parse.charAt(0)-'a'+1;
         y = parse.charAt(1)-'0';
     }
