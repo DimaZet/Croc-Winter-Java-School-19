@@ -1,9 +1,24 @@
 package croc.week3.task3;
 
+import croc.week3.task3plus.Horse;
+import croc.week3.task3plus.WrongWayExeption;
+
 public class Main {
     public static void main(String[] args) {
         ChessCoord a = new ChessCoord(3,5);
         ChessCoord b = new ChessCoord("g3");
         System.out.println(a + " " + b);
+
+        try {
+            System.out.println(Horse.validWay("g8", "e7", "e6"));
+        } catch (WrongWayExeption wrongWayExeption) {
+            System.out.println(wrongWayExeption.getMessage());
+        }
+
+        try {
+            System.out.println(Horse.validWay("g8", "e7", "c8"));
+        } catch (WrongWayExeption wrongWayExeption) {
+            System.out.println(wrongWayExeption.getMessage());
+        }
     }
 }
