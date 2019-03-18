@@ -11,7 +11,8 @@ public class Main {
 
         try {
             //System.out.println(Horse.validWay("g8", "g9"));
-            System.out.println(Horse.validWay("g8", "e7", "c8"));
+            System.out.println(Horse.validWay("g8", "e7", "c6"));
+            //System.out.println(Horse.validWay("g8", "i6"));
             System.out.println(Horse.validWay("g8", "e7", "e6"));
         } catch (WrongWayExeption wrongWayExeption) {
             System.out.println(wrongWayExeption.getMessage());
