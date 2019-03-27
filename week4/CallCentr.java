@@ -1,22 +1,20 @@
 package week4;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class CallCentr {
 
     private ArrayList<Call> log = new ArrayList<>();
 
-    CallCentr(String filepath) throws FileNotFoundException {
-        Scanner in = new Scanner(new File(filepath));
-        int x, y;
-        while (in.hasNext()) {
-            x = in.nextInt();
-            in.nextByte();
-            y = in.nextInt();
-            log.add(new Call(x, y));
+    CallCentr(String filepath) throws IOException {
+        BufferedReader in = new BufferedReader(new FileReader(filepath));
+        String line;
+        while ((line = in.readLine()) != null) {
+            String[] ints = line.split(",");
+            int from = Integer.valueOf(ints[0]);
+            int to = Integer.valueOf(ints[1]);
+            log.add(new Call(from, to));
         }
     }
 
@@ -29,7 +27,13 @@ public class CallCentr {
         Call(int from, int to) {
             this.from = from;
             this.to = to;
-            crossCount = 0;
+            crossCount = 1;
+        }
+
+        Call(int from, int to, int crossCount) {
+            this.from = from;
+            this.to = to;
+            this.crossCount = crossCount;
         }
     }
 
@@ -39,20 +43,36 @@ public class CallCentr {
         return false;
     }
 
-    public int maxCrossOvers(){
-        int max = Integer.MIN_VALUE;
-        for (Call a : log) {
-            for (Call b : log){
-                if (isCrossOver(a,b)) {
-                    if ( ++(a.crossCount) > max) {
-                        max = a.crossCount;
-                    }
-
-                }
+    private int countCrosses(Call call, int index) {
+        int max = 1;
+        for (int i = index; i < log.size(); i++) {
+            Call c = log.get(i);
+            if ((index != i) && (isCrossOver(call,c))) {
+                int l = call.from>c.from?call.from:c.from;
+                int r = call.to<c.to?call.to:c.to;
+                countCrosses(new Call(l,r), i+1);
+            } else {
+                int t = callCountInDiapasone(call);
+                max = max>t?max:t;
             }
         }
         return max;
     }
 
+    public int maxCrosses() {
+        if (log.size() < 1)
+            return 0;
+        else
+            return countCrosses(log.get(0), 0);
+    }
 
+    private int callCountInDiapasone(Call diapasone) {
+        int count = 0;
+        for (Call c : log) {
+            if (isCrossOver(c,diapasone)){
+                ++count;
+            }
+        }
+        return count;
+    }
 }
