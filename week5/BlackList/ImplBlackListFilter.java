@@ -1,5 +1,6 @@
 package week5.BlackList;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -15,13 +16,14 @@ public class ImplBlackListFilter implements BlackListFilter {
      */
     @Override
     public void filterComments(List<String> comments, Set<String> blackList) {
-        for (int i = 0; i < comments.size(); i++) {
-            String comment = comments.get(i);
+        Iterator<String> it = comments.iterator();
+        while (it.hasNext()) {
+            String comment = it.next();
             if (comment == null)
                 continue;
             for (String stopWord : blackList) {
                 if (comment.contains(stopWord)) {
-                    comments.remove(comment);
+                    it.remove();
                 }
             }
         }

@@ -12,9 +12,9 @@ public class Main {
         List<String> comments = new ArrayList<>();
         comments.add("как тебе такое");
         comments.add("я крутой миллионер, программист, плейбой");
+        comments.add("ну это бан");
         comments.add("однажды, в студеную зимнюю пору");
         comments.add("мой дядя самых честных правил");
-        comments.add("ну это бан");
 
         Set<String> blackList = new HashSet<>();
         blackList.add("бан");
