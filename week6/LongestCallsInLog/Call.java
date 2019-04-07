@@ -1,7 +1,5 @@
 package week6.LongestCallsInLog;
 
-import java.sql.Time;
-
 public class Call implements Comparable<Call>{
     public int start;
     public int stop;

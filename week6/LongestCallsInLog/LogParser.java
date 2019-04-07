@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class LogParser {
 
-    public static ArrayList<Call> parse (String filepath) throws IOException {
+    public static ArrayList<Call> parseFromFile (String filepath) throws IOException {
         ArrayList<Call> log = new ArrayList<>();
         BufferedReader in = new BufferedReader(new FileReader(filepath));
         String line;
