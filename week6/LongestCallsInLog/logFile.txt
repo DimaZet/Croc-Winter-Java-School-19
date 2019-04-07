@@ -1,0 +1,5 @@
+1,12,operator1
+4,6,operator2
+7,12,operator2
+10,32,operator3
+15,30,operator1
