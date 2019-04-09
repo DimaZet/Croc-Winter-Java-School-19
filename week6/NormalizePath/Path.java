@@ -4,10 +4,21 @@ import java.util.Iterator;
 public class Path extends LinkedList<String> {
 
 	private int dotdot = 0;
+	private String start;
 	private String path;
+
+	private boolean isDirName(String checkme) {
+		return !(checkme.equals(".") || checkme.equals(".."));
+	}
 
 	private String filter (String[] parsed) {
 		int j = 0;
+		if (isDirName(parsed[0])) {
+			start = parsed[0]; 
+		} else {
+			start = null;
+		}
+
 		for (String p : parsed) {
 			if (p.equals("..")) {
 				if (size() > 0) {
@@ -18,6 +29,9 @@ public class Path extends LinkedList<String> {
 			} else if (p.equals(".")) {
 				continue;
 			} else {
+				if (size() == 0 && dotdot == 1 && start != null && start.equals(p)) {
+					dotdot = 0;
+				}
 				addLast(p);
 			}
 		}
