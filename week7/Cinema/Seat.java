@@ -2,7 +2,7 @@ package week7.Cinema;
 
 import java.util.Objects;
 
-public class Seat implements Comparable<Seat> {
+public class Seat{
     // номер ряда
     private final int row;
     // номер места
@@ -25,10 +25,5 @@ public class Seat implements Comparable<Seat> {
     @Override
     public int hashCode() {
         return Objects.hash(row, seat);
-    }
-
-    @Override
-    public int compareTo(Seat o) {
-        return 0;
     }
 }
