@@ -19,7 +19,7 @@ public class LogParser implements Runnable{
         while ((line = in.readLine()) != null) {
              Call c = Call.valueOf( line.split(",") );
              synchronized (lock) {
-                 if (log.keySet().contains(c)) {
+                 if (log.keySet().contains(c.getOperator())) {
                      Integer i = log.get(c.getOperator()) + 1;
                      log.put(c.getOperator(), i);
                  } else {
