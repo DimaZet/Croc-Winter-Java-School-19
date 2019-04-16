@@ -10,7 +10,7 @@ public class LogParser implements Runnable{
     private String filepath;
     private volatile static Object lock = new Object();
 
-    public void parseFromFile() throws IOException {
+    private void parseFromFile() throws IOException {
 
         BufferedReader in = new BufferedReader(new FileReader(filepath));
         String line;
