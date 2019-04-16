@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class Showtime {
     private volatile Set<Seat> freeSeats;
-    private Object lock = new Object();
+    private static Object lock = new Object();
 
     // возвращает набор мест, доступных для бронирования
     // на текущий сеанс
