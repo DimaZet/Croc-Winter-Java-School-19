@@ -1,10 +1,7 @@
 package week7.MultyThreads;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Company {
 
@@ -22,10 +19,7 @@ public class Company {
             t.join();
         }
 
-        List<Map.Entry<String, Integer>> list = new ArrayList(operators.entrySet());
-        list.sort((o2, o1) -> Integer.compare(o1.getValue(), o2.getValue()));
-
-        return list.get(0).getKey();
+        return Collections.max(operators.entrySet(), Comparator.comparingInt(Map.Entry::getValue)).getKey();
     }
 
 }
