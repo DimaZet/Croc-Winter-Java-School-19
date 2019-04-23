@@ -82,7 +82,9 @@ public class Graph {
         incMapValue(graph.get(j).links, i, 1);
     }
 
-    public List getRecommended(List<Integer> views) {
+    public List getRecommended(List<Integer> arg) {
+        HashSet<Integer> views = new HashSet<>(arg);
+
         Map<Integer,Integer> recommended = new HashMap<>();
         for (int i : views) {
             Map<Integer, Integer> map = graph.get(i).links;
