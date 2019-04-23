@@ -8,7 +8,7 @@ import java.util.*;
 
 
 public class Graph {
-    private Map<Integer, Node> graph;
+    private Map<Integer, Node> graph = new HashMap<>();;
 
     private class Node {
         public String name;
@@ -41,10 +41,6 @@ public class Graph {
         }
     }
 
-    public Graph() {
-        graph = new HashMap<>();
-    }
-
     public Map<Integer, Node> getGraphMap() {
         return graph;
     }
@@ -55,26 +51,26 @@ public class Graph {
         while ((line = in.readLine()) != null) {
             String []parsed = line.split(",");
             if (parsed.length != 2)
-                throw new IllegalArgumentException("Broken line from film list file!");
+                throw new IllegalArgumentException("Film name with \",\"!");
             graph.put(Integer.valueOf(parsed[0]), new Node(parsed[1]));
         }
+        in.close();
     }
 
     public void setViewsFromFile(String filePath) throws IOException {
         BufferedReader in = new BufferedReader(new FileReader(filePath));
         String line;
         while ((line = in.readLine()) != null) {
-            //String[] parsed = line.split(",");
             int[] parsed = Arrays.stream(line.split(",")).mapToInt(Integer::parseInt).toArray();
             for (int i = 0; i < parsed.length-1; i++) {
                 for (int j = i; j < parsed.length; j++) {
-                    if (parsed[i] == parsed[j])
-                        continue;
-                    link(parsed[i],parsed[j]);
+                    if (!(parsed[i] == parsed[j]))
+                        link(parsed[i],parsed[j]);
                 }
 
             }
         }
+        in.close();
     }
 
     public void initialize(String filmsPath, String viewsPath) throws IOException {
