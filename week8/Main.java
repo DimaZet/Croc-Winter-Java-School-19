@@ -6,13 +6,12 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Graph graph = new Graph();
         String films = "films.txt";
         String history = "history.txt";
+        Graph graph = new Graph();
 
         try {
-            graph.initialize(films);
-            graph.linking(history);
+            graph.initialize(films, history);
         } catch (IOException e) {
             e.printStackTrace();
         }

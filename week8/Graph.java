@@ -49,8 +49,8 @@ public class Graph {
         return graph;
     }
 
-    public void initialize(String filename) throws IOException {
-        BufferedReader in = new BufferedReader(new FileReader(filename));
+    public void setFilmsFromFile(String filePath) throws IOException {
+        BufferedReader in = new BufferedReader(new FileReader(filePath));
         String line;
         while ((line = in.readLine()) != null) {
             String []parsed = line.split(",");
@@ -60,8 +60,8 @@ public class Graph {
         }
     }
 
-    public void linking(String filename) throws IOException {
-        BufferedReader in = new BufferedReader(new FileReader(filename));
+    public void setViewsFromFile(String filePath) throws IOException {
+        BufferedReader in = new BufferedReader(new FileReader(filePath));
         String line;
         while ((line = in.readLine()) != null) {
             //String[] parsed = line.split(",");
@@ -75,6 +75,11 @@ public class Graph {
 
             }
         }
+    }
+
+    public void initialize(String filmsPath, String viewsPath) throws IOException {
+        setFilmsFromFile(filmsPath);
+        setViewsFromFile(viewsPath);
     }
 
     private void link(int i, int j) {
